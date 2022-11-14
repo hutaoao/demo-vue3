@@ -16,7 +16,7 @@ export default defineConfig({
    * 在生产中服务时的基本公共路径。
    * @default '/'
    */
-  base: "./demo-vue3/",
+  base: "/demo-vue3",
   // 引入第三方的配置
   //   optimizeDeps: {
   //     include: ["moment", "echarts", "axios", "mockjs"],
