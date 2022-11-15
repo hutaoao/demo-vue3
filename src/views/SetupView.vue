@@ -1,8 +1,8 @@
 <template>
   <div class="Option">
     <h1>组合式 API</h1>
-    <h2>姓名：{{ setup.name }}</h2>
-    <h2>年龄：{{ setup.age }}</h2>
+    <h2>姓名：{{ name }}</h2>
+    <h2>年龄：{{ age }}</h2>
     <h2>年龄的2倍：{{ setup.doubleAge }}</h2>
     <h2>年龄的2倍加1：{{ setup.doubleAggPlusOne }}</h2>
     <h2>年龄加2：{{ setup.agePlusNumber }}</h2>
@@ -17,8 +17,13 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { useSetupStore } from "@/stores/setup";
+
 const setup = useSetupStore();
+
+// 使用 storeToRefs() 对其进行解构：（直接结构就不是响应式的）
+const { name, age } = storeToRefs(setup);
 
 // 直接对其进行读写
 function addAge() {
@@ -29,7 +34,7 @@ function addAge() {
 function addAge2() {
   setup.$patch({
     age: setup.age + 1,
-    weight: setup.weight + 10,
+    weight: setup.weight + 10
   });
 }
 
@@ -54,6 +59,7 @@ function reset() {
   padding: 10px 10px 0;
   border: 1px solid #2c3e50;
 }
+
 .btnBox button {
   margin-right: 10px;
   margin-bottom: 10px;
